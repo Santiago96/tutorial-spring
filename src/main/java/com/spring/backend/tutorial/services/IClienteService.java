@@ -9,4 +9,12 @@ import java.util.List;
 public interface IClienteService {
 
     List<Cliente> findAll();
+
+    Cliente save(Cliente cliente);
+
+    Cliente findById(Long id);
+
+    void delete(Long id);
+
+
 }
