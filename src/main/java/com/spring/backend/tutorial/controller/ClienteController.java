@@ -28,25 +28,26 @@ public class ClienteController {
         return clienteService.findById(id);
     }
 
-    @PostMapping("/cliente")
+    @PostMapping("/clientes")
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente createCliente(@RequestBody Cliente cliente){
         return clienteService.save(cliente);
     }
 
-    @PutMapping("/cliente/{id}")
+    @PutMapping("/clientes/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente updateCliente(@RequestBody Cliente cliente, @PathVariable Long id){
         Cliente currentCliente = clienteService.findById(id);
-
-        currentCliente.setNombre(cliente.getNombre());
-        currentCliente.setApellido(cliente.getApellido());
-        currentCliente.setEmail(cliente.getEmail());
+        if(null != currentCliente) {
+            currentCliente.setNombre(cliente.getNombre());
+            currentCliente.setApellido(cliente.getApellido());
+            currentCliente.setEmail(cliente.getEmail());
+        }
 
         return clienteService.save(currentCliente);
     }
 
-    @DeleteMapping("/cliente/{id}")
+    @DeleteMapping("/clientes/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCliente(@PathVariable Long id){
         clienteService.delete(id);
